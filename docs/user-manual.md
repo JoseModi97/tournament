@@ -51,6 +51,11 @@ no package installation is required after PHP itself is installed.
 
 The platform uses an SQLite database located at `storage/database.sqlite`.
 
+> **Having trouble?** If `php bin/migrate.php` reports `could not find driver`,
+> enable the PDO SQLite extension. On Windows, uncomment `extension=pdo_sqlite`
+> and `extension=sqlite3` in your `php.ini`. On Debian/Ubuntu, run
+> `sudo apt install php-sqlite3` and restart PHP.
+
 1. **Run migrations** to create the schema:
    ```bash
    php bin/migrate.php

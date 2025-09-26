@@ -11,6 +11,10 @@ if (!is_dir(__DIR__ . '/../storage')) {
 
 touch(__DIR__ . '/../storage/database.sqlite');
 
-Migration::run();
-
-echo "Database migrated\n";
+try {
+    Migration::run();
+    echo "Database migrated\n";
+} catch (RuntimeException $e) {
+    fwrite(STDERR, "Migration failed: {$e->getMessage()}\n");
+    exit(1);
+}

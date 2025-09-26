@@ -5,7 +5,12 @@ require_once __DIR__ . '/../src/autoload.php';
 
 use App\Core\Database;
 
-$db = Database::getConnection();
+try {
+    $db = Database::getConnection();
+} catch (RuntimeException $e) {
+    fwrite(STDERR, "Seeding aborted: {$e->getMessage()}\n");
+    exit(1);
+}
 
 $users = [
     [
